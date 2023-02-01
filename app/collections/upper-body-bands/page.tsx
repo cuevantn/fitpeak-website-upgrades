@@ -51,7 +51,7 @@ const ProductPage: React.FunctionComponent<ProductPageProps> = () => {
           </div>
         </div>
       </section>
-      z
+      zk
 
       <section className="container">
         <h1 className="font-bold text-3xl text-center">
