@@ -31,7 +31,7 @@ const MainNavbar: React.FunctionComponent<MainNavbarProps> = () => {
             </CustomLink>
             <CustomLink
               href="/collections/lower-body-bands"
-              label="Próximamente"
+              label="Pronto"
             >
               Lower Body Bands
             </CustomLink>
