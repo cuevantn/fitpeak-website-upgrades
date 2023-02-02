@@ -25,7 +25,7 @@ const CustomLink: React.FunctionComponent<CustomLinkProps> = ({
     >
       {children}
       {label && (
-        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full absolute -top-2 -right-16 px-2 py-1 scale-75 text-xs text-white">
+        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full absolute -top-2 -right-2 px-2 py-1 scale-75 text-xs text-white">
           {label}
         </span>
       )}
