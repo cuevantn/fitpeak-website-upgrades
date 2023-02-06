@@ -7,6 +7,7 @@ import {
   SunMedium,
   Twitter,
   ShoppingBag,
+  Instagram,
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -20,6 +21,7 @@ export const Icons = {
   cart: ShoppingBag,
   search: Search,
   facebook: Facebook,
+  instagram: Instagram,
   logo: (props: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" {...props}>
       <path

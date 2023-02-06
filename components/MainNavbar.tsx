@@ -1,4 +1,5 @@
 import Link from "next/link"
+
 import CustomLink from "./CustomLink"
 import { Icons } from "./icons"
 
@@ -10,11 +11,18 @@ const MainNavbar: React.FunctionComponent<MainNavbarProps> = () => {
       <div className="bg-black">
         <div className="container h-16 flex items-center text-white justify-between">
           <div className="flex space-x-2">
-            <Icons.twitter className="w-5 h-5 fill-current" />
-            <Icons.facebook className="w-5 h-5 fill-current" />
+            <Link href="https://www.facebook.com/fitpeak.shop">
+              <Icons.facebook className="w-5 h-5 fill-current" />
+            </Link>
+            <Link href="https://www.instagram.com/fitpeak.shop">
+              <Icons.instagram className="w-5 h-5" />
+            </Link>
+            <Link href="https://twitter.com/fitpeak.shop">
+              <Icons.twitter className="w-5 h-5 fill-current" />
+            </Link>
           </div>
           <h1 className="text-sm font-normal">
-            ¡Obten 25% de descuento en tu primera compra!
+            ¡Envío gratis en compras mayores a S/ 149.9!
           </h1>
         </div>
       </div>
@@ -29,10 +37,7 @@ const MainNavbar: React.FunctionComponent<MainNavbarProps> = () => {
             <CustomLink href="/collections/upper-body-bands">
               Upper Body Bands
             </CustomLink>
-            <CustomLink
-              href="/collections/lower-body-bands"
-              label="Pronto"
-            >
+            <CustomLink href="/collections/lower-body-bands" label="Pronto">
               Lower Body Bands
             </CustomLink>
           </div>
