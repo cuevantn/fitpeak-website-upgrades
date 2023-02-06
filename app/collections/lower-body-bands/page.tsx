@@ -56,19 +56,19 @@ const ProductPage: React.FunctionComponent<ProductPageProps> = () => {
       <section className="container grid items-center gap-4 pt-6 pb-8 md:py-10">
         <div className="flex justify-between sm:flex-row flex-col">
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
-            Upper Body <br className="hidden sm:inline" />
+            Lower Body <br className="hidden sm:inline" />
             Bands
           </h1>
           <h2 className="flex items-center sm:text-right text-left leading-tight tracking-tighter sm:text-lg md:text-xl lg:text-2xl">
             Bandas para el <br className="hidden sm:inline" />
-            Tren Superior
+            Tren Inferior
           </h2>
         </div>
         <div className="w-full gap-4 grid grid-cols-2 md:grid-cols-4">
           <div className="">
             <AspectRatio ratio={1 / 1}>
               <Image
-                src="/assets/UpperBody-3.jpg"
+                src="/assets/LowerBody-3.jpg"
                 alt="Photo by Alvaro Pinot"
                 fill
                 className="rounded-md object-cover"
@@ -78,7 +78,7 @@ const ProductPage: React.FunctionComponent<ProductPageProps> = () => {
           <div className="">
             <AspectRatio ratio={1 / 1}>
               <Image
-                src="/assets/UpperBody-0.jpg"
+                src="/assets/LowerBody-1.jpg"
                 alt="Photo by Alvaro Pinot"
                 fill
                 className="rounded-md object-cover"
@@ -88,7 +88,7 @@ const ProductPage: React.FunctionComponent<ProductPageProps> = () => {
           <div className="col-span-2">
             <AspectRatio ratio={2 / 1}>
               <Image
-                src="/assets/UpperBody-1.jpg"
+                src="/assets/LowerBody-2.jpg"
                 alt="Photo by Alvaro Pinot"
                 fill
                 className="rounded-md object-cover"
@@ -114,7 +114,7 @@ const ProductPage: React.FunctionComponent<ProductPageProps> = () => {
       <section className="container pt-6 pb-8 md:py-10">
         <AspectRatio ratio={16 / 9}>
           <Image
-            src="/assets/UpperBody-2.jpg"
+            src="/assets/LowerBody-0.jpg"
             alt="Photo by Alvaro Pinot"
             fill
             className="rounded-md object-cover"
