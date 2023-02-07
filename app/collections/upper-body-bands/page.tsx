@@ -3,54 +3,9 @@ import Image from "next/image"
 import ProductQuickView from "@/components/ProductQuickView"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
-interface ProductPageProps {}
+import { PRODUCTS } from "@/lib/constants"
 
-const products = [
-  {
-    id: "1",
-    image1: "/assets/yellow-band.jpg",
-    max_weight: 7.5,
-    past_price: 19.9,
-    price: 15.9,
-  },
-  {
-    id: "2",
-    image1: "/assets/red-band.jpg",
-    max_weight: 15,
-    past_price: 29.9,
-    price: 22.9,
-  },
-  {
-    id: "3",
-    image1: "/assets/black-band.jpg",
-    max_weight: 25,
-    past_price: 39.9,
-    price: 32.9,
-  },
-  {
-    id: "4",
-    image1: "/assets/orange-band.jpg",
-    max_weight: 35,
-    past_price: 49.9,
-    price: 39.9,
-  },
-  {
-    id: "5",
-    image1: "/assets/purple-band.jpg",
-    max_weight: 50,
-    past_price: 69.9,
-    price: 59.9,
-  },
-  {
-    id: "6",
-    image1: "/assets/green-band.jpg",
-    max_weight: 60,
-    past_price: 99.9,
-    price: 86.9,
-  },
-]
-
-const ProductPage: React.FunctionComponent<ProductPageProps> = () => {
+const ProductPage = () => {
   return (
     <>
       <section className="container grid items-center gap-4 pt-6 pb-8 md:py-10">
@@ -107,7 +62,7 @@ const ProductPage: React.FunctionComponent<ProductPageProps> = () => {
         </h1>
       </section>
       <section className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-4 pt-6 pb-8 md:py-10">
-        {products.map((p) => (
+        {PRODUCTS.map((p) => (
           <ProductQuickView {...p} key={p.id} />
         ))}
       </section>

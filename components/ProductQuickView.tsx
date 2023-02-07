@@ -1,12 +1,16 @@
 import Image from "next/image"
+import Link from "next/link"
+
 import { AspectRatio } from "components/ui/aspect-ratio"
+
+import { GLOBAL_DISCOUNT } from "@/lib/constants"
 
 interface ProductQuickViewProps {
   id?: string
   color?: string
+  slug: string
   size?: string
   quantity?: number
-  past_price?: number
   price?: number
   name?: string
   shortDescription?: string
@@ -19,15 +23,23 @@ const ProductQuickView: React.FunctionComponent<ProductQuickViewProps> = ({
   id,
   image1,
   color,
+  slug,
   size,
   quantity,
-  past_price,
   price,
   name,
   shortDescription,
   max_weight,
 }) => {
+  const applyDiscount = (price: number, discount: number) => {
+    let x = price - (price * discount)
+    return x.toFixed(1)
+  }
+
+  const priceWithDiscount = applyDiscount(price, GLOBAL_DISCOUNT)
+
   return (
+    <Link href={`/products/${slug}`}>
     <div className="rounded-md border p-2">
       <div className="">
         <AspectRatio ratio={1 / 1}>
@@ -45,12 +57,13 @@ const ProductQuickView: React.FunctionComponent<ProductQuickViewProps> = ({
         </span>
         <div className="flex flex-col justify-center items-end">
           <span className="font-mono line-through text-xs text-red-600">
-            {past_price}
+            {price}
           </span>
-          <span className="font-mono">S/ {price}</span>
+          <span className="font-mono">S/ {priceWithDiscount}</span>
         </div>
       </div>
     </div>
+    </Link>
   )
 }
 
