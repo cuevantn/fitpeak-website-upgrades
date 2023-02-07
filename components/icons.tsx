@@ -1,4 +1,5 @@
 import {
+  Menu,
   Facebook,
   Laptop,
   LucideProps,
@@ -14,6 +15,7 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  menu: Menu,
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,

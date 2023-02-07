@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import { ThemeProvider } from "next-themes"
 
 interface NextThemeProviderProps {
@@ -9,11 +10,19 @@ interface NextThemeProviderProps {
 const NextThemeProvider: React.FunctionComponent<NextThemeProviderProps> = ({
   children,
 }) => {
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <>{children}</>
+  }
+
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <body className="min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
-        {children}
-      </body>
+      {children}
     </ThemeProvider>
   )
 }
