@@ -3,8 +3,9 @@
 import { Inter as FontSans } from "@next/font/google"
 
 import "@/styles/globals.css"
-import { ThemeProvider } from "next-themes"
-import MainNavbar from "@/components/MainNavbar"
+
+import Header from "@/components/Header"
+import NextThemeProvider from "@/components/NextThemeProvider"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -15,17 +16,17 @@ interface MainLayoutProps {
   children: React.ReactNode
 }
 
-const MainLayout: React.FunctionComponent<MainLayoutProps> = ({ children }) => {
+const Layout: React.FunctionComponent<MainLayoutProps> = ({ children }) => {
   return (
-    <html lang="en" className={fontSans.className}>
-      <body className="min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <MainNavbar />
+    <html lang="es" className={fontSans.className}>
+      <body className="min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50">
+        <NextThemeProvider>
+          <Header />
           {children}
-        </ThemeProvider>
+        </NextThemeProvider>
       </body>
     </html>
   )
 }
 
-export default MainLayout
+export default Layout
