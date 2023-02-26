@@ -9,6 +9,7 @@ import {
   Twitter,
   ShoppingBag,
   Instagram,
+  Truck,
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -20,6 +21,7 @@ export const Icons = {
   moon: Moon,
   laptop: Laptop,
   twitter: Twitter,
+  truck: Truck,
   cart: ShoppingBag,
   search: Search,
   facebook: Facebook,

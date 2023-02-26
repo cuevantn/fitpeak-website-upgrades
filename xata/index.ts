@@ -10,7 +10,7 @@ const tables = [
   {
     name: "product",
     columns: [
-      { name: "name", type: "string" },
+      { name: "title", type: "string" },
       { name: "sale_price", type: "float" },
       { name: "stock", type: "int", notNull: true, defaultValue: "0" },
       { name: "description", type: "text" },
@@ -23,6 +23,7 @@ const tables = [
         defaultValue: "Sporting Goods > Exercise & Fitness > Exercise Bands",
       },
       { name: "image", type: "string" },
+      { name: "name", type: "string", notNull: true, defaultValue: "" },
     ],
   },
 ] as const;

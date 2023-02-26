@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       (product) => `
       <item>
         <g:id>${product.id}</g:id>
-        <title>${product.name}</title>
+        <title>${product.title}</title>
         <g:description>${product.description}</g:description>
         <link>https://www.fitpeak.shop/products/${product.id}</link>
         <g:image_link>${product.image}</g:image_link>
@@ -25,6 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         )}
         <g:availability>in stock</g:availability>
         <g:price>${product.price.toFixed(2)} PEN</g:price>
+        <g:sale_price>${product.sale_price?.toFixed(2)} PEN</g:sale_price>
         <g:product_type>${product.google_category}</g:product_type>
         <g:condition>new</g:condition>
         <g:google_product_category>${
@@ -44,7 +45,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   // PARSE '&' to '&amp;'
   data = data.replace(/&/g, "&amp;")
-  
 
   return res.status(200).send(data)
 }
