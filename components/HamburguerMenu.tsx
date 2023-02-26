@@ -40,10 +40,10 @@ const HamburguerMenu = () => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/collections/upper-body-bands">Upper Body Bands</Link>
+          <Link href="/">Upper Body Bands</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/collections/lower-body-bands">Lower Body Bands</Link>
+          <Link href="/">Lower Body Bands</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuLabel asChild>

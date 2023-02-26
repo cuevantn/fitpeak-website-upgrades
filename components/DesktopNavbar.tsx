@@ -20,10 +20,10 @@ const DesktopNavbar = () => {
       </div>
 
       <div className="flex space-x-4 font-bold text-sm">
-        <CustomLink href="/collections/upper-body-bands">
+        <CustomLink href="/">
           Upper Body Bands
         </CustomLink>
-        <CustomLink href="/collections/lower-body-bands" label="Pronto">
+        <CustomLink href="#" label="Pronto">
           Lower Body Bands
         </CustomLink>
       </div>
