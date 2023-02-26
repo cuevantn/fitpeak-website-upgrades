@@ -11,7 +11,11 @@ const nextConfig = {
     ],
   },
   images: {
-    domains: ["images.unsplash.com","http2.mlstatic.com"],
+    domains: [
+      "images.unsplash.com",
+      "http2.mlstatic.com",
+      "res.cloudinary.com",
+    ],
   },
 }
 
