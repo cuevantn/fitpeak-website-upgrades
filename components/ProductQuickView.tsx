@@ -35,7 +35,7 @@ const ProductQuickView: React.FunctionComponent<ProductQuickViewProps> = ({
     return x.toFixed(1)
   }
 
-  const priceWithDiscount = applyDiscount(price, GLOBAL_DISCOUNT)
+  const priceWithDiscount = applyDiscount(100, GLOBAL_DISCOUNT)
 
   return (
     <Link href={`/products/${slug}`}>
