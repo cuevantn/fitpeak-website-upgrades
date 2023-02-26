@@ -35,6 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           <g:service>Standard</g:service>
           <g:price>15.00 PEN</g:price>
         </g:shipping>
+        <g:brand>Fitpeak</g:brand>
       </item>
       `
     )}
