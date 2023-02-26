@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://fitpeak-4hlshe.us-east-1.xata.sh/db/catalog",
+  "codegen": {
+    "output": "xata/index.ts"
+  }
+}
