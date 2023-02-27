@@ -3,6 +3,7 @@ import Link from "next/link"
 import { AspectRatio } from "@/ui/aspect-ratio"
 
 import { BagRecord, ProductRecord } from "@/lib/xata/codegen/shop"
+import PriceComponent from "../PriceComponent"
 import QuantityInput from "./QuantityInput"
 import RemoveButton from "./RemoveButton"
 
@@ -69,16 +70,7 @@ const SubtotalBag = ({
   const subtotal = price * quantity
   const sale_subtotal = sale_price && sale_price * quantity
 
-  if (sale_price) {
-    return (
-      <p className="font-bold space-x-2 text-right">
-        <span className="text-zinc-400 line-through">S/ {subtotal}</span>
-        <span>S/ {sale_subtotal}</span>
-      </p>
-    )
-  }
-
-  return <span className="font-bold">S/ {subtotal}</span>
+  return <PriceComponent priceA={subtotal} priceB={sale_subtotal} />
 }
 
 export default BagItem
