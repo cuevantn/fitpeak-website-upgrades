@@ -1,6 +1,6 @@
 {
-  "databaseURL": "https://fitpeak-4hlshe.us-east-1.xata.sh/db/catalog",
+  "databaseURL": "https://fitpeak-4hlshe.us-east-1.xata.sh/db/shop",
   "codegen": {
-    "output": "xata/index.ts"
+    "output": "src/lib/xata/codegen/shop.ts"
   }
 }
