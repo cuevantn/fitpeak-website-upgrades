@@ -1,0 +1,81 @@
+{
+  "tables": [
+    {
+      "name": "product",
+      "columns": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "price",
+          "type": "float"
+        },
+        {
+          "name": "stock",
+          "type": "int",
+          "notNull": true,
+          "defaultValue": "0"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "sale_price",
+          "type": "float",
+          "notNull": true,
+          "defaultValue": "0"
+        },
+        {
+          "name": "additional_images",
+          "type": "multiple"
+        },
+        {
+          "name": "google_category",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": "Sporting Goods > Exercise & Fitness > Exercise Bands"
+        },
+        {
+          "name": "image",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": ""
+        }
+      ]
+    },
+    {
+      "name": "bag",
+      "columns": [
+        {
+          "name": "user",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": ""
+        },
+        {
+          "name": "product",
+          "type": "link",
+          "link": {
+            "table": "product"
+          }
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "notNull": true,
+          "defaultValue": "1"
+        },
+        {
+          "name": "added_at",
+          "type": "datetime"
+        }
+      ]
+    }
+  ]
+}
