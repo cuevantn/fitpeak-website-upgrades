@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+
 import Xata from "@/lib/xata"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

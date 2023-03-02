@@ -1,5 +1,5 @@
 import { siteConfig } from "@/lib/site"
-import Icons from "@/components/Icons";
+import { Icons } from "@/ui/icons"
 
 const SocialLinks = () => (
   <div className="flex space-x-1">
