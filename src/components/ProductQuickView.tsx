@@ -1,8 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import { AspectRatio } from "@/ui/aspect-ratio"
+import Balancer from "react-wrap-balancer"
 
 import { ProductRecord } from "@/lib/xata/codegen/shop"
+import PriceComponent from "./PriceComponent"
 
 const ProductQuickView: React.FunctionComponent<ProductRecord> = ({
   id,
@@ -25,13 +27,14 @@ const ProductQuickView: React.FunctionComponent<ProductRecord> = ({
           </AspectRatio>
         </div>
         <div className="mt-2">
-          <div className="flex items-center space-x-2">
-            <p className="font-mono text-md">S/ {sale_price}</p>
-            <p className="text-xs text-red-500 font-mono text-md line-through">
-              S/ {price}
-            </p>
-          </div>
-          <p className="text-md">{name}</p>
+          <h3 className="font-bold text-lg">
+            <Balancer>{name}</Balancer>
+          </h3>
+          <PriceComponent
+            className="text-left"
+            priceA={price}
+            priceB={sale_price}
+          />
         </div>
       </div>
     </Link>

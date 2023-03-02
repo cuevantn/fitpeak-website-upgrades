@@ -1,31 +1,55 @@
 "use client"
 
-import useShoppingBag from "@/hooks/useShoppingBag"
+import { useToast } from "@/hooks/ui/use-toast"
+import { useShoppingBag } from "@/hooks/use-shopping-bag"
 import { Button } from "@/ui/button"
-import { signIn, useSession } from "next-auth/react"
+import { ToastAction } from "@/ui/toast"
+import { signIn } from "next-auth/react"
 
 const AddToBagButton = ({ productId }: { productId: string }) => {
-  const { data: session, status } = useSession()
+  const { toast } = useToast()
 
-  const { addProduct, checkProductIsInBag } = useShoppingBag()
+  const { isLoading, addProduct, checkProductIsInBag, error } = useShoppingBag()
   const isInBag = checkProductIsInBag(productId)
 
-  const handleClick = () => {
-    if (status === "unauthenticated") {
-      signIn()
+  const handleClick = async () => {
+    if (error === "Unauthenticated") {
+      toast({
+        variant: "destructive",
+        title: "Ups! No estás logueado",
+        description: "Inicia sesión para poder agregar productos a tu bolsa",
+        action: (
+          <ToastAction altText="Iniciar sesión" onClick={() => signIn()}>
+            Iniciar sesión
+          </ToastAction>
+        ),
+      })
     } else {
-      addProduct(productId)
+      const added = await addProduct(productId)
+      if (!added) {
+        toast({
+          variant: "destructive",
+          title: "Ups! Algo salió mal",
+          description: "No se pudo agregar el producto a tu bolsa",
+        })
+      } else {
+        toast({
+          description: isInBag
+            ? "Se ha agregado una unidad más a tu bolsa"
+            : "El producto ha sido agregado a tu bolsa",
+        })
+      }
     }
   }
 
   return (
     <Button
-      disabled={status === "loading" || isInBag}
+      disabled={isLoading}
       size="lg"
       className="w-full"
       onClick={handleClick}
     >
-      {isInBag ? "Ya está en la bolsa ;)" : "Comprar"}
+      {isInBag ? "Agregar uno más" : "Comprar"}
     </Button>
   )
 }

@@ -1,9 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useTheme } from "next-themes"
-
-import Icons from "@/components/Icons";
 import { Button } from "@/ui/button"
 import {
   DropdownMenu,
@@ -11,6 +8,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu"
+import { useTheme } from "next-themes"
+
+import { Icons } from "@/ui/icons"
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme()

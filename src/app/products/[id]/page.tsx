@@ -4,7 +4,8 @@ import { AspectRatio } from "@/ui/aspect-ratio"
 
 import Xata from "@/lib/xata"
 import AddToBagButton from "@/components/AddToBagButton"
-import Icons from "@/components/Icons"
+import { Icons } from "@/ui/icons"
+import PriceComponent from "@/components/PriceComponent"
 
 const getProduct = async (id: string) => {
   const product = await Xata.shop.db.product.read(id)
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     return { title: "Not found" }
   }
 
-  return { title: product.name, description: product.description }
+  return { title: product.title, description: product.description }
 }
 
 const ProductPage = async ({ params }) => {
@@ -39,10 +40,11 @@ const ProductPage = async ({ params }) => {
           </h1>
           <div className="w-full space-y-2">
             <div className="flex justify-between">
-              <div className="flex items-center space-x-2">
-                <p className="text-2xl">S/ {sale_price}</p>
-                <p className="text-red-500 text-sm line-through">S/ {price}</p>
-              </div>
+              <PriceComponent
+                priceA={price}
+                priceB={sale_price}
+                className="text-2xl"
+              />
               <div className="flex items-center">
                 <Icons.truck className="w-5 h-5" />
                 <p className="ml-1">Envíamos a todo el Perú</p>

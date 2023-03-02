@@ -4,7 +4,7 @@ import React from "react"
 import { Button } from "@/ui/button"
 import { Input } from "@/ui/input"
 
-import Icons from "@/components/Icons"
+import { Icons } from "@/ui/icons"
 import RemoveButton from "./RemoveButton"
 
 interface QuantityInputProps {
@@ -13,7 +13,11 @@ interface QuantityInputProps {
   handleRemove: () => Promise<boolean>
 }
 
-const QuantityInput = ({ quantity, handleUpdate, handleRemove }: QuantityInputProps) => {
+const QuantityInput = ({
+  quantity,
+  handleUpdate,
+  handleRemove,
+}: QuantityInputProps) => {
   const [value, setValue] = React.useState(quantity)
   const [updating, setUpdating] = React.useState(false)
 

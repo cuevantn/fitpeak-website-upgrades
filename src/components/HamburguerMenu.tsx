@@ -10,7 +10,7 @@ import {
 } from "@/ui/dropdown-menu"
 
 import { siteConfig } from "@/lib/site"
-import Icons from "@/components/Icons"
+import { Icons } from "@/ui/icons"
 
 const HamburguerMenu = () => {
   return (

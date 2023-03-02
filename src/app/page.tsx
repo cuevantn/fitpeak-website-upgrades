@@ -1,31 +1,24 @@
 import Image from "next/image"
 import { AspectRatio } from "@/ui/aspect-ratio"
+import { Heading } from "@/ui/typography"
 
 import Xata from "@/lib/xata"
 import ProductQuickView from "@/components/ProductQuickView"
 
 const getProducts = async () => {
   const products = await Xata.shop.db.product
-    .select(["id", "image", "name", "price","sale_price"])
+    .select(["id", "image", "name", "price", "sale_price"])
     .getAll()
   return products
 }
-
 
 const ProductPage = async () => {
   const products = await getProducts()
   return (
     <>
-      <section className="container grid items-center gap-4 pt-6 pb-8 md:py-10">
+      <section className="container grid items-center gap-4">
         <div className="flex justify-between sm:flex-row flex-col">
-          <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
-            Power <br className="hidden sm:inline" />
-            Bands
-          </h1>
-          <h2 className="flex items-center sm:text-right text-left leading-tight tracking-tighter sm:text-lg md:text-xl lg:text-2xl">
-            Bandas de <br className="hidden sm:inline" />
-            Resistencia
-          </h2>
+          <Heading>Power Bands</Heading>
         </div>
         <div className="w-full gap-4 grid grid-cols-2 md:grid-cols-4">
           <div className="">
@@ -61,13 +54,13 @@ const ProductPage = async () => {
         </div>
       </section>
       <section className="container">
-        <h1 className="font-bold text-3xl text-center">
+        <h3 className="font-bold text-3xl text-center">
           ¡Bandas de resistencia para llevar tu entrenamiento al{" "}
           <br className="hidden sm:inline" />
           <span className="underline text-4xl underline-offset-4 decoration-pink-500">
             máximo nivel!
           </span>
-        </h1>
+        </h3>
       </section>
       <section className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-4 pt-6 pb-8 md:py-10">
         {products.map((p) => (

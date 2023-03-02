@@ -1,7 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import useShoppingBag from "@/hooks/useShoppingBag"
+import { useShoppingBag } from "@/hooks/use-shopping-bag"
+import { Heading, Paragraph } from "@/ui/typography"
 import { useSession } from "next-auth/react"
 
 const CheckoutPage = () => {
@@ -21,7 +22,7 @@ const CheckoutPage = () => {
 
   return (
     <div className="container my-4">
-      <h1 className="font-bold text-2xl mb-4">Checkout</h1>
+      <Heading>Checkout</Heading>
       <p className="text-xl font-bold">Total: S/ {total + 15}</p>
 
       <p>Medios de pago:</p>

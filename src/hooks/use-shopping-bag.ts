@@ -8,12 +8,14 @@ interface BagItem extends BagRecord {
   product: ProductRecord
 }
 
-const useShoppingBag = () => {
+export const useShoppingBag = () => {
   const { data, mutate } = useSWR("/api/bag")
 
   const error = data?.error
-
   const items = (data?.items || []) as BagItem[]
+
+  const isLoading = !data && !error
+  const isEmpty = !isLoading && items.length === 0
 
   const total_sale_price = items.reduce(
     (acc, item) => acc + item.product.sale_price * item.quantity,
@@ -99,7 +101,7 @@ const useShoppingBag = () => {
     clearBag,
     checkProductIsInBag,
     error,
+    isLoading,
+    isEmpty,
   }
 }
-
-export default useShoppingBag

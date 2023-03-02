@@ -1,8 +1,9 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import useShoppingBag from "@/hooks/useShoppingBag"
+import { useShoppingBag } from "@/hooks/use-shopping-bag"
 import { Button } from "@/ui/button"
+import { Heading, Paragraph } from "@/ui/typography"
 import { useSession } from "next-auth/react"
 
 import BagItem from "@/components/BagItem"
@@ -15,20 +16,20 @@ const BagPage = () => {
     useShoppingBag()
 
   if (status === "loading") {
-    return <div className="container my-4">Loading...</div>
+    return <div className="container">Loading...</div>
   }
 
   if (status === "unauthenticated") {
-    return <div className="container my-4">Unauthenticated</div>
+    return <div className="container">Unauthenticated</div>
   }
 
   if (items?.length === 0) {
-    return <div className="container my-4">No items in bag</div>
+    return <div className="container">No items in bag</div>
   }
 
   return (
-    <div className="container my-4">
-      <h1 className="font-bold text-3xl mb-4">Bag</h1>
+    <div className="container">
+      <Heading>Bag</Heading>
       <div className="text-sm sm:text-md md:text-lg">
         {items?.map((item) => (
           <BagItem

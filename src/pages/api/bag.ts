@@ -21,6 +21,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return
   }
 
+  const client = await Xata.shop.db.client.filter("user", user.id).getFirst()
+
+  if (!client) {
+    res.status(500).json({ error: "Server Authentication Error" })
+    return
+  }
+
   switch (req.method) {
     case "POST": {
       // Add a unit to the bag
@@ -34,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       const bagItem = await Xata.shop.db.bag
-        .filter("user", user.id)
+        .filter("client", client.id)
         .filter("product", product.id)
         .getFirst()
 
@@ -44,21 +51,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         })
       } else {
         await Xata.shop.db.bag.create({
-          user: user.id,
+          client: client.id,
           product: product.id,
           added_at: new Date(),
         })
       }
 
       res.status(200).json({ success: true })
-      return
+      break
     }
 
     case "GET": {
       // Get the bag
 
       const bagItems = await Xata.shop.db.bag
-        .filter("user", user.id)
+        .filter("client", client.id)
         .select([
           "quantity",
           "added_at",
@@ -70,7 +77,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         .getAll()
 
       res.status(200).json({ success: true, items: bagItems })
-      return
+      break
     }
 
     case "PUT": {
@@ -85,7 +92,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       const bagItem = await Xata.shop.db.bag
-        .filter("user", user.id)
+        .filter("client", client.id)
         .filter("product", product.id)
         .getFirst()
 
@@ -98,34 +105,34 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       res.status(404).json({ error: "Bag item not found" })
-      return
+      break
     }
-    case "DELETE":
-      {
-        // Remove an item from the bag
-        const { productId } = req.body
+    case "DELETE": {
+      // Remove an item from the bag
+      const { productId } = req.body
 
-        const product = await Xata.shop.db.product.read(productId)
+      const product = await Xata.shop.db.product.read(productId)
 
-        if (!product) {
-          res.status(404).json({ error: "Product not found" })
-          return
-        }
-
-        const bagItem = await Xata.shop.db.bag
-          .filter("user", user.id)
-          .filter("product", product.id)
-          .getFirst()
-
-        if (bagItem) {
-          await bagItem.delete()
-        }
-
-        res.status(200).json({ success: true })
+      if (!product) {
+        res.status(404).json({ error: "Product not found" })
         return
       }
 
+      const bagItem = await Xata.shop.db.bag
+        .filter("client", client.id)
+        .filter("product", product.id)
+        .getFirst()
+
+      if (bagItem) {
+        await bagItem.delete()
+      }
+
+      res.status(200).json({ success: true })
+      break
+    }
+    default:
       res.status(200).json({ name: "John Doe" })
+      break
   }
 }
 export default handler

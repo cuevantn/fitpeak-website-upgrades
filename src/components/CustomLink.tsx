@@ -20,7 +20,8 @@ const CustomLink: React.FunctionComponent<CustomLinkProps> = ({
     <Link
       href={href}
       className={
-        "flex items-center relative font-bold h-10 " + (pathname === href ? "border-b border-spacing-2" : "")
+        "flex items-center relative font-bold h-10 " +
+        (pathname === href ? "border-b border-spacing-2" : "")
       }
     >
       {children}
