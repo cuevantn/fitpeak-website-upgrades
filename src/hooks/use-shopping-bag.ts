@@ -14,8 +14,8 @@ export const useShoppingBag = () => {
   const error = data?.error
   const items = (data?.items || []) as BagItem[]
 
-  const isLoading = !data && !error
-  const isEmpty = !isLoading && items.length === 0
+  const loading = !data && !error
+  const empty = !loading && items.length === 0
 
   const total_sale_price = items.reduce(
     (acc, item) => acc + item.product.sale_price * item.quantity,
@@ -101,7 +101,7 @@ export const useShoppingBag = () => {
     clearBag,
     checkProductIsInBag,
     error,
-    isLoading,
-    isEmpty,
+    loading,
+    empty,
   }
 }

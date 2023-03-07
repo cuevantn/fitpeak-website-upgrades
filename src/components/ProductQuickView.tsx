@@ -15,7 +15,7 @@ const ProductQuickView: React.FunctionComponent<ProductRecord> = ({
 }) => {
   return (
     <Link href={`/products/${id}`}>
-      <div className="rounded-md border dark:border-zinc-800 hover:dark:border-zinc-700 p-2">
+      <div className="rounded-md border p-2 dark:border-zinc-800 hover:dark:border-zinc-700">
         <div className="">
           <AspectRatio ratio={1 / 1}>
             <Image
@@ -27,7 +27,7 @@ const ProductQuickView: React.FunctionComponent<ProductRecord> = ({
           </AspectRatio>
         </div>
         <div className="mt-2">
-          <h3 className="font-bold text-lg">
+          <h3 className="text-lg font-bold">
             <Balancer>{name}</Balancer>
           </h3>
           <PriceComponent

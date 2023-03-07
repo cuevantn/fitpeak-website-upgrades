@@ -32,11 +32,11 @@ const tables = [
       { name: "product", type: "link", link: { table: "product" } },
       { name: "quantity", type: "int", notNull: true, defaultValue: "1" },
       { name: "added_at", type: "datetime" },
-      { name: "client", type: "link", link: { table: "client" } },
+      { name: "customer", type: "link", link: { table: "customer" } },
     ],
   },
   {
-    name: "client",
+    name: "customer",
     columns: [
       { name: "first_name", type: "string", notNull: true, defaultValue: "" },
       { name: "last_name", type: "string", notNull: true, defaultValue: "" },
@@ -52,6 +52,12 @@ const tables = [
       { name: "user", type: "string", unique: true },
       { name: "image", type: "string" },
       { name: "phone_prefix", type: "int", notNull: true, defaultValue: "51" },
+      {
+        name: "preferred_address",
+        type: "link",
+        link: { table: "address" },
+        unique: true,
+      },
     ],
   },
   {
@@ -67,8 +73,7 @@ const tables = [
       { name: "distrito", type: "string", notNull: true, defaultValue: "" },
       { name: "direccion", type: "string", notNull: true, defaultValue: "" },
       { name: "referencias", type: "string", notNull: true, defaultValue: "" },
-      { name: "preferred", type: "bool", notNull: true, defaultValue: "false" },
-      { name: "client", type: "link", link: { table: "client" } },
+      { name: "customer", type: "link", link: { table: "customer" } },
     ],
   },
 ] as const
@@ -82,8 +87,8 @@ export type ProductRecord = Product & XataRecord
 export type Bag = InferredTypes["bag"]
 export type BagRecord = Bag & XataRecord
 
-export type Client = InferredTypes["client"]
-export type ClientRecord = Client & XataRecord
+export type Customer = InferredTypes["customer"]
+export type CustomerRecord = Customer & XataRecord
 
 export type Address = InferredTypes["address"]
 export type AddressRecord = Address & XataRecord
@@ -91,7 +96,7 @@ export type AddressRecord = Address & XataRecord
 export type DatabaseSchema = {
   product: ProductRecord
   bag: BagRecord
-  client: ClientRecord
+  customer: CustomerRecord
   address: AddressRecord
 }
 

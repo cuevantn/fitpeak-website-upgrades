@@ -21,9 +21,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return
   }
 
-  const client = await Xata.shop.db.client.filter("user", user.id).getFirst()
+  const customer = await Xata.shop.db.customer
+    .filter("user", user.id)
+    .getFirst()
 
-  if (!client) {
+  if (!customer) {
     res.status(500).json({ error: "Server Authentication Error" })
     return
   }
@@ -41,7 +43,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       const bagItem = await Xata.shop.db.bag
-        .filter("client", client.id)
+        .filter("customer", customer.id)
         .filter("product", product.id)
         .getFirst()
 
@@ -51,7 +53,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         })
       } else {
         await Xata.shop.db.bag.create({
-          client: client.id,
+          customer: customer.id,
           product: product.id,
           added_at: new Date(),
         })
@@ -65,7 +67,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       // Get the bag
 
       const bagItems = await Xata.shop.db.bag
-        .filter("client", client.id)
+        .filter("customer", customer.id)
         .select([
           "quantity",
           "added_at",
@@ -92,7 +94,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       const bagItem = await Xata.shop.db.bag
-        .filter("client", client.id)
+        .filter("customer", customer.id)
         .filter("product", product.id)
         .getFirst()
 
@@ -119,7 +121,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       const bagItem = await Xata.shop.db.bag
-        .filter("client", client.id)
+        .filter("customer", customer.id)
         .filter("product", product.id)
         .getFirst()
 

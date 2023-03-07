@@ -1,11 +1,12 @@
 "use client"
 
-import useSWR from "swr"
+import useSWR, { useSWRConfig } from "swr"
 
 import { AddressRecord } from "@/lib/xata/codegen/shop"
 
 export const useAddress = () => {
-  const { data, mutate } = useSWR("/api/address")
+  const { data, mutate } = useSWR("/api/addresses")
+  const { mutate: mutateOther } = useSWRConfig()
 
   const error = data?.error
 
@@ -15,14 +16,14 @@ export const useAddress = () => {
 
   const loading = !data && !error
 
-  const createAddress = async (address: AddressRecord) => {
+  const createAddress = async (data: AddressRecord) => {
     try {
-      await fetch("/api/address", {
+      await fetch("/api/addresses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(address),
+        body: JSON.stringify(data),
       })
 
       await mutate()
@@ -32,14 +33,14 @@ export const useAddress = () => {
     }
   }
 
-  const updateAddress = async (address: AddressRecord) => {
+  const updateAddress = async (id: string, data: AddressRecord) => {
     try {
-      await fetch("/api/address", {
+      await fetch(`/api/addresses/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(address),
+        body: JSON.stringify(data),
       })
 
       await mutate()
@@ -49,17 +50,30 @@ export const useAddress = () => {
     }
   }
 
-  const deleteAddress = async (address: AddressRecord) => {
+  const deleteAddress = async (id: string) => {
     try {
-      await fetch("/api/address", {
+      await fetch(`/api/addresses/${id}`, {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(address),
       })
 
       await mutate()
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  const setPreferredAddress = async (id: string) => {
+    try {
+      await fetch(`/api/customer`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ preferred_address: id }),
+      })
+
+      await mutateOther("/api/customer")
       return true
     } catch {
       return false
@@ -73,6 +87,7 @@ export const useAddress = () => {
     createAddress,
     updateAddress,
     deleteAddress,
+    setPreferredAddress,
     error,
   }
 }

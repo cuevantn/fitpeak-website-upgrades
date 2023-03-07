@@ -2,20 +2,20 @@
 
 import React from "react"
 import { useToast } from "@/hooks/ui/use-toast"
-import { useClientInfo } from "@/hooks/use-client-info"
+import { useCustomer } from "@/hooks/use-customer"
 import { Button } from "@/ui/button"
 import { Input } from "@/ui/input"
 import { Label } from "@/ui/label"
 import { useSession } from "next-auth/react"
 
-import { ClientRecord } from "@/lib/xata/codegen/shop"
+import { CustomerRecord } from "@/lib/xata/codegen/shop"
 
 interface ContactFormProps {
-  initialInfo: ClientRecord
-  updateClientInfo: (info: ClientRecord) => Promise<boolean>
+  initialInfo: CustomerRecord
+  updatecustomer: (info: CustomerRecord) => Promise<boolean>
 }
 
-const ContactForm = ({ initialInfo, updateClientInfo }: ContactFormProps) => {
+const ContactForm = ({ initialInfo, updatecustomer }: ContactFormProps) => {
   const { toast } = useToast()
 
   const [first_name, setFirstName] = React.useState(initialInfo.first_name)
@@ -45,14 +45,14 @@ const ContactForm = ({ initialInfo, updateClientInfo }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setUpdating(true)
-    const updated = await updateClientInfo({
+    const updated = await updatecustomer({
       first_name,
       last_name,
       DNI,
       email,
       phone_prefix,
       phone_number,
-    } as ClientRecord)
+    } as CustomerRecord)
     if (!updated) {
       toast({
         variant: "destructive",
@@ -79,7 +79,7 @@ const ContactForm = ({ initialInfo, updateClientInfo }: ContactFormProps) => {
 
   return (
     <form
-      className="space-y-4 max-w-md"
+      className="max-w-md space-y-4"
       onReset={handleReset}
       onSubmit={handleSubmit}
     >
@@ -175,9 +175,9 @@ const ContactForm = ({ initialInfo, updateClientInfo }: ContactFormProps) => {
 }
 
 export default function ContactHandler() {
-  const { clientInfo, updateClientInfo, error } = useClientInfo()
+  const { customer, updatecustomer, error } = useCustomer()
 
-  if (!clientInfo && !error) {
+  if (!customer && !error) {
     return <div className="container my-4">Loading...</div>
   }
 
@@ -185,7 +185,5 @@ export default function ContactHandler() {
     return <div className="container my-4">Unauthenticated</div>
   }
 
-  return (
-    <ContactForm initialInfo={clientInfo} updateClientInfo={updateClientInfo} />
-  )
+  return <ContactForm initialInfo={customer} updatecustomer={updatecustomer} />
 }

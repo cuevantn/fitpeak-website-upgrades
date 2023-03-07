@@ -23,7 +23,7 @@ const BagItem = ({
   return (
     <div
       key={id}
-      className="py-4 w-full grid grid-cols-4 sm:grid-cols-5 gap-4 items-center text-center"
+      className="grid w-full grid-cols-4 items-center gap-4 py-4 text-center sm:grid-cols-5"
     >
       <div className="hidden sm:col-span-1 sm:flex">
         <AspectRatio ratio={1 / 1}>

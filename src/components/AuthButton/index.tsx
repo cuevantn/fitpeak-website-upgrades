@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useClientInfo } from "@/hooks/use-client-info"
+import { useCustomer } from "@/hooks/use-customer"
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar"
 import { Button } from "@/ui/button"
 import {
@@ -18,18 +18,17 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu"
+import { Icons } from "@/ui/icons"
 import { signIn, signOut } from "next-auth/react"
 import { useTheme } from "next-themes"
-
-import { Icons } from "@/ui/icons"
 
 export default function DropdownMenuDemo() {
   const router = useRouter()
 
-  const { clientInfo, error } = useClientInfo()
+  const { customer, error } = useCustomer()
   const { theme, setTheme } = useTheme()
 
-  if (!clientInfo && !error) return null
+  if (!customer && !error) return null
 
   if (error === "Unauthenticated")
     return (
@@ -95,10 +94,7 @@ export default function DropdownMenuDemo() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar>
-            <AvatarImage
-              src={clientInfo.image || ""}
-              alt={clientInfo.first_name}
-            />
+            <AvatarImage src={customer.image || ""} alt={customer.first_name} />
             <AvatarFallback>
               <Icons.loader className="h-4 w-4 animate-spin" />
             </AvatarFallback>
@@ -106,7 +102,7 @@ export default function DropdownMenuDemo() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>{clientInfo.first_name}</DropdownMenuLabel>
+        <DropdownMenuLabel>{customer.first_name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <Link href="/contact">
@@ -115,7 +111,7 @@ export default function DropdownMenuDemo() {
               <span>Contacto</span>
             </DropdownMenuItem>
           </Link>
-          <Link href="/address">
+          <Link href="/addresses">
             <DropdownMenuItem>
               <Icons.truck className="mr-2 h-4 w-4" />
               <span>Direcciones</span>

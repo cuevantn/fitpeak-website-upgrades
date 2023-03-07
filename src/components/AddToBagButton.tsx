@@ -9,7 +9,7 @@ import { signIn } from "next-auth/react"
 const AddToBagButton = ({ productId }: { productId: string }) => {
   const { toast } = useToast()
 
-  const { isLoading, addProduct, checkProductIsInBag, error } = useShoppingBag()
+  const { loading, addProduct, checkProductIsInBag, error } = useShoppingBag()
   const isInBag = checkProductIsInBag(productId)
 
   const handleClick = async () => {
@@ -44,7 +44,7 @@ const AddToBagButton = ({ productId }: { productId: string }) => {
 
   return (
     <Button
-      disabled={isLoading}
+      disabled={loading}
       size="lg"
       className="w-full"
       onClick={handleClick}

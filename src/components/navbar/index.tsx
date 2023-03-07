@@ -1,29 +1,29 @@
 import Link from "next/link"
 import { Button } from "@/ui/button"
+import { Icons } from "@/ui/icons"
 
 import AuthButton from "@/components/AuthButton"
 import CustomLink from "@/components/CustomLink"
-import { Icons } from "@/ui/icons"
 
 const Navbar = () => {
   return (
-    <nav className="sticky top-0 z-50 container flex items-center justify-between py-4 bg-white dark:bg-zinc-900">
+    <nav className="container sticky top-0 z-50 flex items-center justify-between bg-white py-4 dark:bg-zinc-900">
       <Link href="/" className="flex items-center sm:w-48">
-        <Icons.logo className="w-8 h-8 fill-current" />
-        <span className="font-bold ml-2 mr-8">fitpeak</span>
+        <Icons.logo className="h-8 w-8 fill-current" />
+        <span className="ml-2 mr-8 font-bold">fitpeak</span>
       </Link>
 
-      <div className="hidden md:flex space-x-4 font-bold text-sm">
+      <div className="hidden space-x-4 text-sm font-bold md:flex">
         <CustomLink href="/">Upper Body Bands</CustomLink>
         <CustomLink href="#" label="Pronto">
           Lower Body Bands
         </CustomLink>
       </div>
 
-      <div className="flex items-center space-x-4 sm:w-48 justify-end">
+      <div className="flex items-center justify-end space-x-4 sm:w-48">
         <Link href="/bag" className="h-10 w-10">
           <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-            <Icons.bag className="absolute w-5 h-5" />
+            <Icons.bag className="absolute h-5 w-5" />
           </Button>
         </Link>
         <AuthButton />
