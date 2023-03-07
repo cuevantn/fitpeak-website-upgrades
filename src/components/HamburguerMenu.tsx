@@ -8,9 +8,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu"
+import { Icons } from "@/ui/icons"
 
 import { siteConfig } from "@/lib/site"
-import { Icons } from "@/ui/icons"
 
 const HamburguerMenu = () => {
   return (
@@ -54,14 +54,14 @@ const HamburguerMenu = () => {
               rel="noreferrer"
               href={siteConfig.links.instagram}
             >
-              <Icons.instagram className="w-5 h-5 mr-2" />
+              <Icons.instagram className="mr-2 h-5 w-5" />
             </a>
             <a
               target="_blank"
               rel="noreferrer"
               href={siteConfig.links.facebook}
             >
-              <Icons.facebook className="w-5 h-5 mr-2 fill-current" />
+              <Icons.facebook className="mr-2 h-5 w-5 fill-current" />
             </a>
           </div>
         </DropdownMenuLabel>

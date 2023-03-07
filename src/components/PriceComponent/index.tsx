@@ -14,9 +14,9 @@ const PriceComponent = ({
     const highestPrice = Math.max(priceA, priceB)
 
     return (
-      <p className={cn("font-bold space-x-2 text-right", className)}>
+      <p className={cn("space-x-2 text-right font-bold", className)}>
         <span>S/</span>
-        <span className="mr-2 ml-1 line-through tabular-nums text-zinc-400">
+        <span className="mr-2 ml-1 tabular-nums text-zinc-400 line-through">
           {" "}
           {highestPrice}
         </span>

@@ -17,10 +17,27 @@ const ProductPage = async () => {
   return (
     <>
       <section className="container grid items-center gap-4">
-        <div className="flex justify-between sm:flex-row flex-col">
+        <div className="flex flex-col justify-between sm:flex-row">
           <Heading>Power Bands</Heading>
         </div>
-        <div className="w-full gap-4 grid grid-cols-2 md:grid-cols-4">
+      </section>
+      <section className="container">
+        <h3 className="text-center text-3xl font-bold">
+          ¡Bandas de resistencia para llevar tu entrenamiento al{" "}
+          <br className="hidden sm:inline" />
+          <span className="text-4xl underline decoration-pink-500 underline-offset-4">
+            máximo nivel!
+          </span>
+        </h3>
+      </section>
+      <section className="container grid grid-cols-2 items-center gap-4 pt-6 pb-8 sm:grid-cols-3 md:grid-cols-4 md:py-10">
+        {products.map((p) => (
+          <ProductQuickView stock={50} google_category={""} {...p} key={p.id} />
+        ))}
+      </section>
+
+      <section className="container md:py-10">
+        <div className="mb-4 grid w-full grid-cols-2 gap-4 md:grid-cols-4">
           <div className="">
             <AspectRatio ratio={1 / 1}>
               <Image
@@ -52,22 +69,6 @@ const ProductPage = async () => {
             </AspectRatio>
           </div>
         </div>
-      </section>
-      <section className="container">
-        <h3 className="font-bold text-3xl text-center">
-          ¡Bandas de resistencia para llevar tu entrenamiento al{" "}
-          <br className="hidden sm:inline" />
-          <span className="underline text-4xl underline-offset-4 decoration-pink-500">
-            máximo nivel!
-          </span>
-        </h3>
-      </section>
-      <section className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-4 pt-6 pb-8 md:py-10">
-        {products.map((p) => (
-          <ProductQuickView stock={50} google_category={""} {...p} key={p.id} />
-        ))}
-      </section>
-      <section className="container pt-6 pb-8 md:py-10">
         <AspectRatio ratio={16 / 9}>
           <Image
             src="/assets/UpperBody-2.jpg"

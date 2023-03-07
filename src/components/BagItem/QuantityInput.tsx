@@ -2,9 +2,9 @@
 
 import React from "react"
 import { Button } from "@/ui/button"
+import { Icons } from "@/ui/icons"
 import { Input } from "@/ui/input"
 
-import { Icons } from "@/ui/icons"
 import RemoveButton from "./RemoveButton"
 
 interface QuantityInputProps {
@@ -55,7 +55,7 @@ const QuantityInput = ({
           size="sm"
           variant="ghost"
         >
-          <Icons.undo className="w-4 h-4" />
+          <Icons.undo className="h-4 w-4" />
         </Button>
 
         <Button
@@ -64,7 +64,7 @@ const QuantityInput = ({
           size="sm"
           variant="ghost"
         >
-          <Icons.check className="w-4 h-4" />
+          <Icons.check className="h-4 w-4" />
         </Button>
         <RemoveButton handleRemove={handleRemove} />
       </div>

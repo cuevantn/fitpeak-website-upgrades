@@ -23,7 +23,7 @@ const ClientLayout = ({ children }) => {
         <body className="bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <WrapBalancerProvider>
-              <div className="flex flex-col min-h-[125vh]">
+              <div className="flex min-h-[150vh] flex-col">
                 <Header />
                 {children}
                 <Footer />

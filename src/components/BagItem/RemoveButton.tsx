@@ -3,7 +3,6 @@
 import React from "react"
 import { useToast } from "@/hooks/ui/use-toast"
 import { Button } from "@/ui/button"
-
 import { Icons } from "@/ui/icons"
 
 const RemoveButton = ({
@@ -35,7 +34,7 @@ const RemoveButton = ({
         setRemoving(false)
       }}
     >
-      <Icons.remove className="w-4 h-4" />
+      <Icons.remove className="h-4 w-4" />
     </Button>
   )
 }

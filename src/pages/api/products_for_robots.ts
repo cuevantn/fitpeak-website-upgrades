@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next"
 
 import Xata from "@/lib/xata"
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const products = await Xata.shop.db.product.getAll()
 
   let data = `<?xml version="1.0" encoding="UTF-8"?>
@@ -45,5 +45,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   // PARSE '&' to '&amp;'
   data = data.replace(/&/g, "&amp;")
 
-  return res.status(200).send(data)
+  res.status(200).send(data)
+  return
 }
+
+export default handler

@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { AspectRatio } from "@/ui/aspect-ratio"
+import { Icons } from "@/ui/icons"
 
 import Xata from "@/lib/xata"
 import AddToBagButton from "@/components/AddToBagButton"
-import { Icons } from "@/ui/icons"
 import PriceComponent from "@/components/PriceComponent"
 
 const getProduct = async (id: string) => {
@@ -46,7 +46,7 @@ const ProductPage = async ({ params }) => {
                 className="text-2xl"
               />
               <div className="flex items-center">
-                <Icons.truck className="w-5 h-5" />
+                <Icons.truck className="h-5 w-5" />
                 <p className="ml-1">Envíamos a todo el Perú</p>
               </div>
             </div>
@@ -54,7 +54,7 @@ const ProductPage = async ({ params }) => {
           <AddToBagButton productId={product.id} />
         </div>
         <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-          <div className="shrink-0 w-full md:w-1/2 h-min grid grid-cols-2 grid-rows-4 gap-4">
+          <div className="grid h-min w-full shrink-0 grid-cols-2 grid-rows-4 gap-4 md:w-1/2">
             <div className="col-span-2 row-span-2">
               <AspectRatio ratio={1 / 1}>
                 <Image
@@ -79,7 +79,7 @@ const ProductPage = async ({ params }) => {
             ))}
           </div>
           <div className="sm:w-full md:w-1/2">
-            <p className="whitespace-pre-line max-w-xl">{description}</p>
+            <p className="max-w-xl whitespace-pre-line">{description}</p>
           </div>
         </div>
       </section>

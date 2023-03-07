@@ -20,13 +20,13 @@ const CustomLink: React.FunctionComponent<CustomLinkProps> = ({
     <Link
       href={href}
       className={
-        "flex items-center relative font-bold h-10 " +
-        (pathname === href ? "border-b border-spacing-2" : "")
+        "relative flex h-10 items-center font-bold " +
+        (pathname === href ? "border-spacing-2 border-b" : "")
       }
     >
       {children}
       {label && (
-        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full absolute -top-2 -right-2 px-2 py-1 scale-75 text-xs text-white">
+        <span className="absolute -top-2 -right-2 scale-75 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 py-1 text-xs text-white">
           {label}
         </span>
       )}

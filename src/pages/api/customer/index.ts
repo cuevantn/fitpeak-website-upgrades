@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth/next"
 
 import { getFirstAndLastName } from "@/lib/utils"
 import Xata from "@/lib/xata"
-import { authOptions } from "./auth/[...nextauth]"
+import { authOptions } from "../auth/[...nextauth]"
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerSession(req, res, authOptions)
@@ -24,11 +24,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const [first_name, last_name] = getFirstAndLastName(user.name || "")
 
-  let client = await Xata.shop.db.client.filter("user", user.id).getFirst()
+  let customer = await Xata.shop.db.customer.filter("user", user.id).getFirst()
 
-  if (!client) {
-    // create client
-    client = await Xata.shop.db.client.create({
+  if (!customer) {
+    // create customer
+    customer = await Xata.shop.db.customer.create({
       user: user.id,
       first_name,
       last_name,
@@ -36,7 +36,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       image: user.image,
     })
 
-    if (client.first_name) {
+    if (customer.first_name) {
       // delete used info from user
       await user.update({
         name: null,
@@ -47,7 +47,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (req.method) {
     case "GET":
-      res.status(200).json({ ok: true, client })
+      res.status(200).json({ ok: true, customer })
       break
     case "PUT":
       const { first_name, last_name, DNI, email, phone_prefix, phone_number } =
@@ -61,11 +61,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         !phone_prefix ||
         !phone_number
       ) {
+        const { preferred_address } = req.body
+
+        if (preferred_address) {
+          await customer.update({
+            preferred_address,
+          })
+          res.status(200).json({ ok: true })
+          return
+        }
+
         res.status(400).json({ error: "Missing required fields" })
         return
       }
 
-      await client.update({
+      await customer.update({
         first_name,
         last_name,
         DNI,
