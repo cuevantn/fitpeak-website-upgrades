@@ -4,7 +4,7 @@ import useSWR from "swr"
 
 import { BagRecord, ProductRecord } from "@/lib/xata/codegen/shop"
 
-interface BagItem extends BagRecord {
+export interface BagItem extends BagRecord {
   product: ProductRecord
 }
 
@@ -18,7 +18,7 @@ export const useShoppingBag = () => {
   const empty = !loading && items.length === 0
 
   const total_sale_price = items.reduce(
-    (acc, item) => acc + item.product.sale_price * item.quantity,
+    (acc, item) => acc + (item.product.sale_price || 0) * item.quantity,
     0
   )
   const total_price = items.reduce(
@@ -90,6 +90,7 @@ export const useShoppingBag = () => {
     })
     mutate()
   }
+
   return {
     total_price,
     total_sale_price,

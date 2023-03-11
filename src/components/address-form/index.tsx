@@ -60,7 +60,7 @@ export const AddressForm = ({ initialValues }: AddressFormProps) => {
   }, [departamento, provincia])
 
   const allFieldsFilled = departamento && provincia && distrito && referencias
-  
+
   const disabled =
     submitting || initialValues
       ? departamento === initialValues?.departamento &&

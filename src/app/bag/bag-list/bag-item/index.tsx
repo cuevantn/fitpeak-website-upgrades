@@ -3,9 +3,8 @@ import Link from "next/link"
 import { AspectRatio } from "@/ui/aspect-ratio"
 
 import { BagRecord, ProductRecord } from "@/lib/xata/codegen/shop"
-import PriceComponent from "../PriceComponent"
-import QuantityInput from "./QuantityInput"
-import RemoveButton from "./RemoveButton"
+import { PriceComponent } from "@/components/price-component"
+import QuantityInput from "./quantity-input"
 
 interface BagItemProps extends BagRecord {
   product: ProductRecord
@@ -13,7 +12,7 @@ interface BagItemProps extends BagRecord {
   handleUpdate: (quantity: number) => Promise<boolean>
 }
 
-const BagItem = ({
+export const BagItem = ({
   id,
   product,
   quantity,
@@ -49,9 +48,30 @@ const BagItem = ({
       <div className="col-span-1">
         <SubtotalBag
           price={product.price}
-          sale_price={product.sale_price}
+          sale_price={product.sale_price ?? undefined}
           quantity={quantity}
         />
+      </div>
+    </div>
+  )
+}
+
+export const BagItemSkeleton = () => {
+  return (
+    <div className="grid w-full grid-cols-4 items-center gap-4 py-4 text-center text-zinc-200 dark:text-zinc-800 sm:grid-cols-5">
+      <div className="hidden sm:col-span-1 sm:flex">
+        <div className="aspect-square w-full animate-pulse rounded-md bg-current" />
+      </div>
+      <div className="col-span-2 text-left">
+        <div className="h-4 w-1/2 animate-pulse bg-current font-bold" />
+        <div className="mt-2 h-4 w-1/4 animate-pulse bg-current font-medium" />
+      </div>
+      <div className="col-span-1 space-y-2">
+        <div className="mx-auto h-6 w-1/4 animate-pulse bg-current font-bold" />
+        <div className="mx-auto h-4 w-1/4 animate-pulse bg-current font-bold" />
+      </div>
+      <div className="col-span-1">
+        <div className="ml-auto h-6 w-1/4 animate-pulse bg-current font-bold" />
       </div>
     </div>
   )
@@ -72,5 +92,3 @@ const SubtotalBag = ({
 
   return <PriceComponent priceA={subtotal} priceB={sale_subtotal} />
 }
-
-export default BagItem

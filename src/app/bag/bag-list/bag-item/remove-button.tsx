@@ -1,15 +1,13 @@
-"use client"
-
 import React from "react"
 import { useToast } from "@/hooks/ui/use-toast"
 import { Button } from "@/ui/button"
 import { Icons } from "@/ui/icons"
 
-const RemoveButton = ({
-  handleRemove,
-}: {
+interface RemoveButtonProps {
   handleRemove: () => Promise<boolean>
-}) => {
+}
+
+export const RemoveButton = ({ handleRemove }: RemoveButtonProps) => {
   const [removing, setRemoving] = React.useState(false)
   const { toast } = useToast()
   return (
@@ -38,5 +36,3 @@ const RemoveButton = ({
     </Button>
   )
 }
-
-export default RemoveButton

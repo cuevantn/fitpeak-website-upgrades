@@ -5,7 +5,7 @@ import { Icons } from "@/ui/icons"
 
 import Xata from "@/lib/xata"
 import AddToBagButton from "@/components/AddToBagButton"
-import PriceComponent from "@/components/PriceComponent"
+import { PriceComponent } from "@/components/price-component"
 
 const getProduct = async (id: string) => {
   const product = await Xata.shop.db.product.read(id)
@@ -42,7 +42,7 @@ const ProductPage = async ({ params }) => {
             <div className="flex justify-between">
               <PriceComponent
                 priceA={price}
-                priceB={sale_price}
+                priceB={sale_price ?? undefined}
                 className="text-2xl"
               />
               <div className="flex items-center">
