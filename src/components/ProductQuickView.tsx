@@ -4,7 +4,7 @@ import { AspectRatio } from "@/ui/aspect-ratio"
 import Balancer from "react-wrap-balancer"
 
 import { ProductRecord } from "@/lib/xata/codegen/shop"
-import PriceComponent from "./PriceComponent"
+import { PriceComponent } from "./price-component"
 
 const ProductQuickView: React.FunctionComponent<ProductRecord> = ({
   id,
@@ -33,7 +33,7 @@ const ProductQuickView: React.FunctionComponent<ProductRecord> = ({
           <PriceComponent
             className="text-left"
             priceA={price}
-            priceB={sale_price}
+            priceB={sale_price ?? undefined}
           />
         </div>
       </div>

@@ -5,7 +5,7 @@ import { Button } from "@/ui/button"
 import { Icons } from "@/ui/icons"
 import { Input } from "@/ui/input"
 
-import RemoveButton from "./RemoveButton"
+import { RemoveButton } from "./remove-button"
 
 interface QuantityInputProps {
   quantity: number

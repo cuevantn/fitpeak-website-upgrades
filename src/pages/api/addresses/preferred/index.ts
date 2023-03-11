@@ -1,24 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
-import { getServerSession } from "next-auth/next"
 
-import { handleProtectedAPIRoute } from "@/lib/utils/handle-protected-api-route"
+import { handleProtectedAPIRoute } from "@/lib/utils/auth/handle-protected-api-route"
 import Xata from "@/lib/xata"
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { customer, error } = await handleProtectedAPIRoute(req, res)
   if (error || !customer) return
 
+  if (!customer.preferred_address?.id) {
+    res.status(200).json({ ok: true, preferred_address: null })
+    return
+  }
+
+  const preferred_address = await Xata.shop.db.address.read(
+    customer.preferred_address.id
+  )
+
   switch (req.method) {
     case "GET":
-      if (customer?.preferred_address) {
-        const preferred_address = await Xata.shop.db.address.read(
-          customer.preferred_address
-        )
-        res.status(200).json({ ok: true, preferred_address })
-      } else {
-        res.status(200).json({ ok: true, preferred_address: null })
-      }
+      res.status(200).json({ ok: true, preferred_address })
       break
     case "PUT":
       const { addressId } = req.body
@@ -35,9 +35,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return
       }
 
-      await Xata.shop.db.customer.update(customer.id, {
+      const updatedAddress = await Xata.shop.db.customer.update(customer.id, {
         preferred_address: addressId,
       })
+
+      if (!updatedAddress) {
+        res.status(500).json({ error: "Server error" })
+        return
+      }
 
       res.status(200).json({ ok: true })
       break

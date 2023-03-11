@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 
-const PriceComponent = ({
+export const PriceComponent = ({
   priceA,
   priceB,
   className,
@@ -31,5 +31,3 @@ const PriceComponent = ({
     </p>
   )
 }
-
-export default PriceComponent
