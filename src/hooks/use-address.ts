@@ -1,12 +1,11 @@
 "use client"
 
-import useSWR, { useSWRConfig } from "swr"
+import useSWR from "swr"
 
 import { AddressRecord } from "@/lib/xata/codegen/shop"
 
 export const useAddress = () => {
   const { data, mutate } = useSWR("/api/addresses")
-  const { mutate: mutateOther } = useSWRConfig()
 
   const error = data?.error
 
@@ -63,23 +62,6 @@ export const useAddress = () => {
     }
   }
 
-  const setPreferredAddress = async (id: string) => {
-    try {
-      await fetch(`/api/customer`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ preferred_address: id }),
-      })
-
-      await mutateOther("/api/customer")
-      return true
-    } catch {
-      return false
-    }
-  }
-
   return {
     loading,
     noAddress,
@@ -87,7 +69,6 @@ export const useAddress = () => {
     createAddress,
     updateAddress,
     deleteAddress,
-    setPreferredAddress,
     error,
   }
 }

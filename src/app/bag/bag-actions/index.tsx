@@ -12,7 +12,7 @@ export const BagActions = () => {
     const { ok, order_id, error } = await createOrder()
 
     if (ok) {
-      router.push(`/checkout/${order_id}`)
+      router.push(`/orders/${order_id}`)
     }
 
     if (error) {
