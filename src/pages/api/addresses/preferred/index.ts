@@ -7,19 +7,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { customer, error } = await handleProtectedAPIRoute(req, res)
   if (error || !customer) return
 
-  if (!customer.preferred_address?.id) {
-    res.status(200).json({ ok: true, preferred_address: null })
-    return
-  }
-
-  const preferred_address = await Xata.shop.db.address.read(
-    customer.preferred_address.id
-  )
+  const preferred_address =
+    customer?.preferred_address?.id &&
+    (await Xata.shop.db.address.read(customer.preferred_address.id))
 
   switch (req.method) {
     case "GET":
       res.status(200).json({ ok: true, preferred_address })
       break
+
     case "PUT":
       const { addressId } = req.body
 
@@ -46,6 +42,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       res.status(200).json({ ok: true })
       break
+
     default:
       res.status(405).json({ error: "Method not allowed" })
       break

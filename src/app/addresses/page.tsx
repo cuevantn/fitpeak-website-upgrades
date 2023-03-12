@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { useToast } from "@/hooks/ui/use-toast"
 import { useAddress } from "@/hooks/use-address"
 import { useCustomer } from "@/hooks/use-customer"
+import { usePreferredAddress } from "@/hooks/use-preferred-address"
 import { Button } from "@/ui/button"
 import { Icons } from "@/ui/icons"
 import { Label } from "@/ui/label"
@@ -15,8 +16,20 @@ import { Heading, Paragraph } from "@/ui/typography"
 const AddressPage = () => {
   const router = useRouter()
   const { toast } = useToast()
-  const { addresses, noAddress, loading, error, setPreferredAddress } =
-    useAddress()
+  const {
+    addresses,
+    noAddress,
+    loading: loadingAddresses,
+    error: addressesError,
+  } = useAddress()
+
+  const {
+    preferredAddress,
+    setPreferredAddress,
+    loading: loadingPreferredAddress,
+    error: preferredAddressError,
+  } = usePreferredAddress()
+
   const {
     customer,
     loading: loadingCustomer,
@@ -28,12 +41,12 @@ const AddressPage = () => {
   )
   const [loadingSave, setLoadingSave] = React.useState(false)
 
-  if (loading || loadingCustomer) {
+  if (loadingAddresses || loadingPreferredAddress || loadingCustomer) {
     return <div>Loading...</div>
   }
 
-  if (error === "Unauthenticated") {
-    return <div>Unauthenticated</div>
+  if (preferredAddressError || addressesError || customerError) {
+    return <div>Error</div>
   }
 
   if (noAddress) {

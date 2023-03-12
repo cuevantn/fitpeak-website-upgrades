@@ -18,9 +18,13 @@ export const usePreferredAddress = () => {
       body: JSON.stringify({ addressId }),
     })
 
-    if (res.ok) {
+    const data = (await res.json()) as { ok?: true }
+
+    if (data.ok) {
       mutate()
     }
+
+    return !!data.ok
   }
 
   return { preferredAddress, loading, setPreferredAddress, error }

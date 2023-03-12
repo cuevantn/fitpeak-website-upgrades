@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth/next"
 
 import { getFirstAndLastName } from "@/lib/utils"
 import Xata from "@/lib/xata"
-import { CustomerRecord } from "@/lib/xata/codegen/shop"
 
 export const handleProtectedAPIRoute = async (
   req: NextApiRequest,
