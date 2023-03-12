@@ -9,7 +9,11 @@ export const handleProtectedServerRoute = async (
   redirect_url_unauthorized: string = "/"
 ) => {
   const cookieStore = cookies()
-  const session_token = cookieStore.get("next-auth.session-token")?.value
+  const session_token = cookieStore.get(
+    process.env.VERCEL
+      ? "__Secure-next-auth.session-token"
+      : "next-auth.session-token"
+  )?.value
 
   const signIn = () => {
     redirect("/api/auth/signin" + `?callbackUrl=${callback_url_signin}`)
