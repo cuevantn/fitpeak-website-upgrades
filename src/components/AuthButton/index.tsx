@@ -95,8 +95,8 @@ export default function DropdownMenuDemo() {
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar>
             <AvatarImage
-              src={customer.image || "/assets/unknown_customer_picture.jpg"}
-              alt={customer.first_name}
+              src={customer?.image ?? "/assets/unknown_customer_picture.jpg"}
+              alt={customer?.first_name}
             />
             <AvatarFallback>
               <Icons.loader className="h-4 w-4 animate-spin" />

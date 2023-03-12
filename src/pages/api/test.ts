@@ -1,12 +1,17 @@
-import Xata from "@/lib/xata"
-
-const transfer = async () => {
-  console.log("transfer")
-}
+import { getUbigeo } from "@/lib/utils/get-olva-shipping-price/get-ubigeo"
 
 const handler = async (req, res) => {
-  await transfer()
-  res.status(200).json({ success: true })
+  const departamento_name = "LIMA"
+  const provincia_name = "LIMA"
+  const distrito_name = "LIMA"
+
+  const ubigeo = getUbigeo(departamento_name, provincia_name, distrito_name)
+
+  if (!ubigeo) {
+    return res.status(404).json({ error: ":(" })
+  }
+
+  res.status(200).json({ ok: true, ubigeo })
 }
 
 export default handler

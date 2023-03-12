@@ -12,6 +12,7 @@ const nextConfig = {
   },
   images: {
     domains: [
+      "lh3.googleusercontent.com",
       "images.unsplash.com",
       "http2.mlstatic.com",
       "res.cloudinary.com",

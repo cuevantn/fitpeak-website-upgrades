@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from "@/ui/select"
 
-import { DEPARTAMENTOS } from "@/lib/departamentos"
+import { DEPARTAMENTOS } from "@/lib/constants/departamentos"
 import { AddressRecord } from "@/lib/xata/codegen/shop"
 
 interface AddressFormProps {
