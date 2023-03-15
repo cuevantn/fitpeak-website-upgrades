@@ -14,6 +14,7 @@ import { PriceComponent } from "@/components/price-component"
 export const BagSummary = () => {
   const router = useRouter()
   const {
+    empty,
     total_price,
     total_sale_price,
     loading: loadingBag,
@@ -44,6 +45,10 @@ export const BagSummary = () => {
 
   if (loadingBag || loadingAddress) {
     return <BagSummarySkeleton />
+  }
+
+  if (empty) {
+    return null
   }
 
   return (

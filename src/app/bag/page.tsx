@@ -7,7 +7,7 @@ import { BagSummary } from "./bag-summary"
 const BagPage = () => {
   return (
     <div className="container">
-      <Heading>Bag</Heading>
+      <Heading>Bolso</Heading>
       <div>
         <BagList />
 

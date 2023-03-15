@@ -4,14 +4,20 @@ import {
   BagItem as BagItemProps,
   useShoppingBag,
 } from "@/hooks/use-shopping-bag"
+import { Paragraph } from "@/ui/typography"
 
 import { BagItem, BagItemSkeleton } from "./bag-item"
 
 const BagList = () => {
-  const { items, removeProduct, updateProduct, loading } = useShoppingBag()
+  const { items, removeProduct, updateProduct, loading, empty } =
+    useShoppingBag()
 
   if (loading) {
     return <BagListSkeleton />
+  }
+
+  if (empty) {
+    return <Paragraph>Agrega algunos productos a tu bolsa :)</Paragraph>
   }
 
   return (

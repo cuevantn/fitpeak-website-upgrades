@@ -2,10 +2,13 @@
 
 import { useRouter } from "next/navigation"
 import { useOrders } from "@/hooks/use-orders"
+import { useShoppingBag } from "@/hooks/use-shopping-bag"
 import { Button } from "@/ui/button"
 
 export const BagActions = () => {
   const router = useRouter()
+  const { empty, loading: loadingShoppingBag } = useShoppingBag()
+
   const { createOrder } = useOrders()
 
   const handleCheckout = async () => {
@@ -18,6 +21,10 @@ export const BagActions = () => {
     if (error) {
       console.log(error)
     }
+  }
+
+  if (loadingShoppingBag || empty) {
+    return null
   }
 
   return (

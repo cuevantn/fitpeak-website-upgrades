@@ -99,10 +99,11 @@ const tables = [
         notNull: true,
         defaultValue: "2023-03-10T14:54:30.4Z",
       },
-      { name: "paid_at", type: "datetime" },
       { name: "discounts", type: "float" },
-      { name: "products_sale_price", type: "float" },
       { name: "shipping_address", type: "link", link: { table: "address" } },
+      { name: "paid_at", type: "datetime" },
+      { name: "shipped_at", type: "datetime" },
+      { name: "received_at", type: "datetime" },
     ],
   },
   {
